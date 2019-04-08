@@ -2,16 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="26cd5895-10b7-4ab4-b0ce-59dea554cb47" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../lab03/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab03/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab03/out/test/lab03/MatrixTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab03/out/test/lab03/SolutionTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab03/out/test/lab03/SortingTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab03/out/test/lab03/SubstringTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab03/out/test/lab03/com/company/testing/MatrixTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab03/src/com/company/testing/MatrixTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab03/src/com/company/testing/SolutionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab03/src/com/company/testing/SortingTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab03/src/com/company/testing/SubstringTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab06/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab06/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab06/.idea/description.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab06/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab06/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab06/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab06/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab06/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab06/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab06/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab06/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab06/lab06.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab06/out/production/lab06/sample/Main.class" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -155,6 +154,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -177,7 +177,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -186,7 +185,7 @@
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554193611029" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../lab06" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -325,7 +324,7 @@
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19261745" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19530201" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />

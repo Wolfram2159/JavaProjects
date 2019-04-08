@@ -1,14 +1,12 @@
 package sample.tools;
 
-import java.util.Date;
-
 public class ListElement {
     private String description;
-    private String priority;
-    private Date date;
+    private PriorityEnum priority;
+    private String date;
     private String text;
 
-    public ListElement(String description, String priority, Date date, String text) {
+    public ListElement(String description, PriorityEnum priority, String date, String text) {
         this.description = description;
         this.priority = priority;
         this.date = date;
@@ -28,19 +26,19 @@ public class ListElement {
         this.description = description;
     }
 
-    public String getPriority() {
+    public PriorityEnum getPriority() {
         return priority;
     }
 
-    public void setPriority(String priority) {
+    public void setPriority(PriorityEnum priority) {
         this.priority = priority;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
