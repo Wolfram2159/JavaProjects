@@ -36,24 +36,28 @@
                </items></Menu>
             </menus>
         </MenuBar>
-        <FlowPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="220.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+        <FlowPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="220.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
             <children>
                 <Label alignment="CENTER" contentDisplay="TOP" prefHeight="17.0" prefWidth="220.0" text="TO DO" />
                 <ListView fx:id="to_do_list" prefHeight="285.0" prefWidth="220.0" />
+            <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#to_do_right" prefHeight="25.0" prefWidth="110.0" text="&gt;&gt;&gt;&gt;" />
             </children>
         </FlowPane>
         <FlowPane layoutX="51.0" layoutY="60.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="220.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
             <children>
                 <Label alignment="CENTER" contentDisplay="TOP" prefHeight="17.0" prefWidth="220.0" text="IN PROGRESS" />
                 <ListView fx:id="in_progress_list" prefHeight="285.0" prefWidth="220.0" />
+            <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#in_progress_left" prefHeight="25.0" prefWidth="110.0" text="&lt;&lt;&lt;&lt;" />
+            <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#in_progress_right" prefHeight="25.0" prefWidth="110.0" text="&gt;&gt;&gt;&gt;" />
             </children>
         </FlowPane>
-        <FlowPane layoutX="351.0" layoutY="60.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="220.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+        <FlowPane alignment="CENTER" layoutX="351.0" layoutY="60.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="220.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
             <children>
                 <Label alignment="CENTER" contentDisplay="TOP" prefHeight="17.0" prefWidth="220.0" text="DONE" />
                 <ListView fx:id="done_list" prefHeight="285.0" prefWidth="220.0" />
+            <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#done_left" prefHeight="25.0" prefWidth="110.0" text="&lt;&lt;&lt;&lt;" />
             </children>
         </FlowPane>
-        <Button maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onMouseClicked="#onClick" prefHeight="30.0" prefWidth="137.0" text="Add new task" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+        <Button alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onMouseClicked="#onClick" prefHeight="30.0" prefWidth="137.0" text="Add new task" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
     </children>
 </GridPane>

@@ -8,70 +8,180 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import sample.tools.ListElement;
+
 
 public class MainController {
 
     public ListView to_do_list;
     public ListView in_progress_list;
     public ListView done_list;
-    private static ListView to_do;
-    private static final String DEFAULT_CONTROL_INNER_BACKGROUND = "derive(-fx-base,80%)";
-    private static final String HIGHLIGHTED_CONTROL_INNER_BACKGROUND = "derive(palegreen, 50%)";
-
-    static class ColorRectCell extends ListCell<String> {
-        @Override
-        public void updateItem(String item, boolean empty) {
-            super.updateItem(item, empty);
-            Rectangle rect = new Rectangle(100, 20);
-            if (item != null) {
-                rect.setFill(Color.web(item));
-                setGraphic(rect);
-            }
-        }
-    }
-
+    public int index_to_do;
+    public int index_in_progress;
+    public int index_done;
     @FXML
     public void initialize() {
-        to_do = to_do_list;
-        to_do.setCellFactory(new Callback<ListView<ListElement>, ListCell<ListElement>>() {
+        to_do_list.setCellFactory((Callback<ListView<ListElement>, ListCell<ListElement>>) param -> new ListCell<>() {
             @Override
-            public ListCell<ListElement> call(ListView<ListElement> param) {
-                return new ListCell<>() {
-                    @Override
-                    protected void updateItem(ListElement item, boolean empty) {
-                        super.updateItem(item, empty);
-                        System.out.println(item.getPriority());
-                        /*switch(item.getPriority()){
-                            case Low:
-                                setStyle("-fx-background-color: #00FF00");
-                                break;
-                            case Medium:
-                                setStyle("-fx-background-color: #FFFF00");
-                                break;
-                            case High:
-                                setStyle("-fx-background-color: #FF0000");
-                                break;
-                        }*/
-                        setText(item.toString());
-
-
+            protected void updateItem(ListElement item, boolean empty) {
+                super.updateItem(item, empty);
+                ContextMenu contextMenu = new ContextMenu();
+                if (item == null) {
+                    setText(null);
+                    setStyle("-fx-background-color: #ffffff");
+                } else {
+                    switch (item.getPriority()) {
+                        case Low:
+                            setStyle("-fx-background-color: #00FF00");
+                            break;
+                        case Medium:
+                            setStyle("-fx-background-color: #FFFF00");
+                            break;
+                        case High:
+                            setStyle("-fx-background-color: #FF0000");
+                            break;
                     }
-                };
+                    setText(item.toString());
+                    index_to_do = item.getIndex();
+                    setTooltip(new Tooltip(item.getText()));
+                    MenuItem edit = new MenuItem("Edit");
+                    edit.setOnAction(action -> {
+                        try {
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../layout/second_stage.fxml"));
+                            Parent root = fxmlLoader.load();
+                            Stage stage = new Stage();
+                            stage.setTitle("Editing task");
+                            stage.setScene(new Scene(root, 600, 400));
+                            SecondController secondController = fxmlLoader.getController();
+                            secondController.setIndex(item.getIndex());
+                            secondController.setAddTaskCallback((listElement,index) -> {
+                                to_do_list.getItems().remove(index);
+                                to_do_list.getItems().add(index, listElement);
+                            });
+                            stage.show();
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    });
+                    MenuItem delete = new MenuItem("Delete");
+                    delete.setOnAction(action -> {
+                        to_do_list.getItems().remove(item.getIndex());
+                    });
+                    contextMenu.getItems().addAll(edit,delete);
+                    setContextMenu(contextMenu);
+                }
             }
         });
-    }
-
-    public static ListView getTo_do() {
-        return to_do;
+        in_progress_list.setCellFactory((Callback<ListView<ListElement>, ListCell<ListElement>>) param -> new ListCell<>() {
+            @Override
+            protected void updateItem(ListElement item, boolean empty) {
+                super.updateItem(item, empty);
+                ContextMenu contextMenu = new ContextMenu();
+                if (item == null) {
+                    setText(null);
+                    setStyle("-fx-background-color: #ffffff");
+                } else {
+                    switch (item.getPriority()) {
+                        case Low:
+                            setStyle("-fx-background-color: #00FF00");
+                            break;
+                        case Medium:
+                            setStyle("-fx-background-color: #FFFF00");
+                            break;
+                        case High:
+                            setStyle("-fx-background-color: #FF0000");
+                            break;
+                    }
+                    setText(item.toString());
+                    index_in_progress = item.getIndex();
+                    setTooltip(new Tooltip(item.getText()));
+                    MenuItem edit = new MenuItem("Edit");
+                    edit.setOnAction(action -> {
+                        try {
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../layout/second_stage.fxml"));
+                            Parent root = fxmlLoader.load();
+                            Stage stage = new Stage();
+                            stage.setTitle("Editing task");
+                            stage.setScene(new Scene(root, 600, 400));
+                            SecondController secondController = fxmlLoader.getController();
+                            secondController.setIndex(item.getIndex());
+                            secondController.setAddTaskCallback((listElement,index) -> {
+                                in_progress_list.getItems().remove(index);
+                                in_progress_list.getItems().add(index, listElement);
+                            });
+                            stage.show();
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    });
+                    MenuItem delete = new MenuItem("Delete");
+                    delete.setOnAction(action -> {
+                        in_progress_list.getItems().remove(item.getIndex());
+                    });
+                    contextMenu.getItems().addAll(edit,delete);
+                    setContextMenu(contextMenu);
+                }
+            }
+        });
+        done_list.setCellFactory((Callback<ListView<ListElement>, ListCell<ListElement>>) param -> new ListCell<>() {
+            @Override
+            protected void updateItem(ListElement item, boolean empty) {
+                super.updateItem(item, empty);
+                ContextMenu contextMenu = new ContextMenu();
+                if (item == null) {
+                    setText(null);
+                    setStyle("-fx-background-color: #ffffff");
+                } else {
+                    switch (item.getPriority()) {
+                        case Low:
+                            setStyle("-fx-background-color: #00FF00");
+                            break;
+                        case Medium:
+                            setStyle("-fx-background-color: #FFFF00");
+                            break;
+                        case High:
+                            setStyle("-fx-background-color: #FF0000");
+                            break;
+                    }
+                    setText(item.toString());
+                    index_done = item.getIndex();
+                    setTooltip(new Tooltip(item.getText()));
+                    MenuItem edit = new MenuItem("Edit");
+                    edit.setOnAction(action -> {
+                        try {
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../layout/second_stage.fxml"));
+                            Parent root = fxmlLoader.load();
+                            Stage stage = new Stage();
+                            stage.setTitle("Editing task");
+                            stage.setScene(new Scene(root, 600, 400));
+                            SecondController secondController = fxmlLoader.getController();
+                            secondController.setIndex(item.getIndex());
+                            secondController.setAddTaskCallback((listElement,index) -> {
+                                done_list.getItems().remove(index);
+                                done_list.getItems().add(index, listElement);
+                            });
+                            stage.show();
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    });
+                    MenuItem delete = new MenuItem("Delete");
+                    delete.setOnAction(action -> {
+                        done_list.getItems().remove(item.getIndex());
+                    });
+                    contextMenu.getItems().addAll(edit,delete);
+                    setContextMenu(contextMenu);
+                }
+            }
+        });
     }
 
     public void onClose(ActionEvent actionEvent) {
@@ -84,7 +194,6 @@ public class MainController {
         alert.setHeaderText(null);
         alert.setContentText("Author: Jakub Podsiadło");
         alert.show();
-        //to_do_list.getItems().add("xdxd");
     }
 
     public void onClick(MouseEvent mouseEvent) {
@@ -95,11 +204,41 @@ public class MainController {
             stage.setTitle("Adding task");
             stage.setScene(new Scene(root, 600, 400));
             SecondController secondController = fxmlLoader.getController();
-            //secondController.tranfer("xdxdxd");
+            secondController.setIndex(to_do_list.getItems().size());
+            secondController.setAddTaskCallback((listElement,index) -> {
+                to_do_list.getItems().add(index,listElement);
+            });
             stage.show();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
 
+    public void to_do_right(MouseEvent mouseEvent) {
+        ListElement listElement = (ListElement) to_do_list.getItems().get(index_to_do);
+        to_do_list.getItems().remove(index_to_do);
+        listElement.setIndex(in_progress_list.getItems().size());
+        in_progress_list.getItems().add(in_progress_list.getItems().size(),listElement);
+    }
+
+    public void in_progress_left(MouseEvent mouseEvent) {
+        ListElement listElement = (ListElement) in_progress_list.getItems().get(index_in_progress);
+        in_progress_list.getItems().remove(index_in_progress);
+        listElement.setIndex(to_do_list.getItems().size());
+        to_do_list.getItems().add(to_do_list.getItems().size(),listElement);
+    }
+
+    public void in_progress_right(MouseEvent mouseEvent) {
+        ListElement listElement = (ListElement) in_progress_list.getItems().get(index_in_progress);
+        in_progress_list.getItems().remove(index_in_progress);
+        listElement.setIndex(done_list.getItems().size());
+        done_list.getItems().add(done_list.getItems().size(),listElement);
+    }
+
+    public void done_left(MouseEvent mouseEvent) {
+        ListElement listElement = (ListElement) done_list.getItems().get(index_done);
+        done_list.getItems().remove(index_done);
+        listElement.setIndex(in_progress_list.getItems().size());
+        in_progress_list.getItems().add(in_progress_list.getItems().size(),listElement);
+    }
 }

@@ -5,12 +5,14 @@ public class ListElement {
     private PriorityEnum priority;
     private String date;
     private String text;
+    private int index;
 
-    public ListElement(String description, PriorityEnum priority, String date, String text) {
+    public ListElement(String description, PriorityEnum priority, String date, String text, int index) {
         this.description = description;
         this.priority = priority;
         this.date = date;
         this.text = text;
+        this.index = index;
     }
 
     @Override
@@ -40,6 +42,14 @@ public class ListElement {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 
     public String getText() {
