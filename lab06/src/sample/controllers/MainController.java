@@ -62,6 +62,7 @@ public class MainController {
                             stage.setScene(new Scene(root, 600, 400));
                             SecondController secondController = fxmlLoader.getController();
                             secondController.setIndex(item.getIndex());
+                            secondController.transfer(item);
                             secondController.setAddTaskCallback((listElement,index) -> {
                                 to_do_list.getItems().remove(index);
                                 to_do_list.getItems().add(index, listElement);

@@ -1,5 +1,7 @@
 package sample.controllers;
 
+import java.time.LocalDate;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -29,7 +31,12 @@ public class SecondController {
     public void setAddTaskCallback(AddTaskCallback addTaskCallback) {
         this.addTaskCallback = addTaskCallback;
     }
-
+    public void transfer(ListElement listElement){
+        textField.setText(listElement.getDescription());
+        choiceBox.setValue(listElement.getPriority());
+        datePicker.setValue(listElement.getDate());
+        textArea.setText(listElement.getText());
+    }
     @FXML
     public void initialize() {
         System.out.println("second");
@@ -42,9 +49,10 @@ public class SecondController {
         String description = textField.getText();
         PriorityEnum priority = (PriorityEnum) choiceBox.getValue();
         //System.out.println(priority);
+        LocalDate localDate = datePicker.getValue();
         String date = datePicker.getValue().toString();
         String text = textArea.getText();
-        ListElement listElement = new ListElement(description,priority,date,text,index);
+        ListElement listElement = new ListElement(description,priority,localDate,text,index);
         //MainController.getTo_do().getItems().add(listElement);
         addTaskCallback.addTask(listElement, index);
         Stage stage = (Stage) btn_close.getScene().getWindow();

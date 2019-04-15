@@ -1,13 +1,15 @@
 package sample.tools;
 
+import java.time.LocalDate;
+
 public class ListElement {
     private String description;
     private PriorityEnum priority;
-    private String date;
+    private LocalDate date;
     private String text;
     private int index;
 
-    public ListElement(String description, PriorityEnum priority, String date, String text, int index) {
+    public ListElement(String description, PriorityEnum priority, LocalDate date, String text, int index) {
         this.description = description;
         this.priority = priority;
         this.date = date;
@@ -36,11 +38,11 @@ public class ListElement {
         this.priority = priority;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
