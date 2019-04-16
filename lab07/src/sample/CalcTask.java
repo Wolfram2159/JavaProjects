@@ -9,47 +9,44 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 
-public class CalcTask extends Task<Void> {
+public class CalcTask extends Task<Double> {
     private Canvas canvas;
     private double points;
+    private PointLoss pointLoss;
+    private Point point;
 
     public CalcTask(Canvas canvas, int points) {
         this.canvas = canvas;
         this.points = points;
     }
-
     @Override
-    protected Void call() throws Exception {
-        Random rand = new Random();
+    protected Double call() throws Exception {
+
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        //gc.setFill(javafx.scene.paint.Color.RED);
-        //gc.fillRect(0,0,400,400);
-        BufferedImage bi= new BufferedImage((int)canvas.getWidth(), (int)canvas.getHeight(),
+        pointLoss = new PointLoss(canvas.getWidth() / 2, canvas.getHeight() / 2);
+        BufferedImage bi = new BufferedImage((int) canvas.getWidth(), (int) canvas.getHeight(),
                 BufferedImage.TYPE_INT_RGB);
         double g = 0;
         for (int k = 0; k < points; k++) {
-            double i = -8 + (8 +8) * rand.nextDouble();
-            double j = -8 + (8 +8) * rand.nextDouble();
-            if(Equation.calc(i,j)){
+            point = pointLoss.calculate();
+            if (point.getIsDraw()) {
+                if (isCancelled()) {
+                    break;
+                }
                 g++;
-                double Ax = -8;
-                double Bx = 8;
-                double Cx = -canvas.getWidth()/2;
-                double Dx = canvas.getWidth()/2;
-                double Ay = -8;
-                double By = 8;
-                double Cy = -canvas.getHeight()/2;
-                double Dy = canvas.getHeight()/2;
-                int x = (int)((Dx-Cx)*(i-Ax)/(Bx-Ax)+Cx);
-                int y = -(int)((Dy-Cy)*(j-Ay)/(By-Ay)+Cy);
-                //System.out.println("i="+i+"/ x="+x);
-                bi.setRGB(x+(int)canvas.getWidth()/2, y+(int)canvas.getHeight()/2, Color.YELLOW.getRGB());
+                int x = point.getX();
+                int y = point.getY();
+                bi.setRGB(x + (int) canvas.getWidth() / 2, y + (int) canvas.getHeight() / 2, Color.YELLOW.getRGB());
+            }
+            updateProgress(k, points);
+            if (k % 5000 == 0) {
+                gc.drawImage(SwingFXUtils.toFXImage(bi, null), 0, 0);
             }
         }
-        gc.drawImage(SwingFXUtils.toFXImage(bi, null), 0,0);
-        double calk = 256*(g/points);
-        System.out.println(calk);
-        return null;
+        Double calka = 256 * (g / points);
+        return calka;
     }
 }
