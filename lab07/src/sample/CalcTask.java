@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.canvas.Canvas;
@@ -43,7 +44,7 @@ public class CalcTask extends Task<Double> {
             }
             updateProgress(k, points);
             if (k % 5000 == 0) {
-                gc.drawImage(SwingFXUtils.toFXImage(bi, null), 0, 0);
+                Platform.runLater(() -> gc.drawImage(SwingFXUtils.toFXImage(bi, null), 0, 0));
             }
         }
         Double calka = 256 * (g / points);

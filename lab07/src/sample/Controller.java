@@ -16,19 +16,23 @@ public class Controller {
     public Button stop;
     public ProgressBar progressBar;
     public Label label;
-    private CalcTask task;
+    private CalcTask task=null;
     @FXML
     public void initialize() {
         label.setText("");
     }
 
     public void startClick(MouseEvent mouseEvent) {
+        if(task!=null){
+            task.cancel();
+        }
         canvas.getGraphicsContext2D().setFill(Color.BLACK);
         canvas.getGraphicsContext2D().fillRect(0,0,canvas.getWidth(),canvas.getHeight());
         task = new CalcTask(canvas, Integer.parseInt(textField.getText()));
         task.setOnSucceeded(e -> {
             label.setText("Integral = " + task.getValue());
         });
+
         progressBar.progressProperty().bind(task.progressProperty());
         new Thread(task).start();
     }
