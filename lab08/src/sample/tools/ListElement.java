@@ -9,6 +9,7 @@ public class ListElement implements Serializable {
     private LocalDate date;
     private String text;
     private int index;
+    private BelongsEnum belongs;
 
     public ListElement(String description, PriorityEnum priority, LocalDate date, String text, int index) {
         this.description = description;
@@ -61,5 +62,13 @@ public class ListElement implements Serializable {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public BelongsEnum getBelongs() {
+        return belongs;
+    }
+
+    public void setBelongs(BelongsEnum belongs) {
+        this.belongs = belongs;
     }
 }
