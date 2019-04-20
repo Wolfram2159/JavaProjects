@@ -2,16 +2,120 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="26cd5895-10b7-4ab4-b0ce-59dea554cb47" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab01/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab01/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab01/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab01/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab01/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab01/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab01/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab01/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab01/lab1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab01/lab1.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab01/src/Circle.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab01/src/Circle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab01/src/Figure.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab01/src/Figure.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab01/src/Printable.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab01/src/Printable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab01/src/Prism.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab01/src/Prism.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab01/src/Square.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab01/src/Square.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab01/src/Triangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab01/src/Triangle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab01/src/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab01/src/main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab02/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab02/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab02/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab02/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab02/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab02/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab02/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab02/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab02/Proj2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab02/Proj2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab02/src/FulfillmentCenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab02/src/FulfillmentCenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab02/src/FulfillmentCenterContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab02/src/FulfillmentCenterContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab02/src/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab02/src/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab02/src/ItemCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab02/src/ItemCondition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab02/src/StringComparator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab02/src/StringComparator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab02/src/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab02/src/main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/project-template.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/project-template.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/lab03/MatrixTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/lab03/SolutionTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/lab03/SortingTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/lab03/SubstringTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/lab03/com/company/testing/MatrixTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/testing/MatrixTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/testing/SolutionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/testing/SortingTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/testing/SubstringTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab03.iml" beforeDir="false" afterPath="$PROJECT_DIR$/lab03.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Sorting/BubbleSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Sorting/BubbleSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Sorting/InsertionSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Sorting/InsertionSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Sorting/RecursiveBubbleSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Sorting/RecursiveBubbleSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Sorting/RecursiveInsertionSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Sorting/RecursiveInsertionSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Sorting/SelectionSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Sorting/SelectionSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/matrix/Addition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/matrix/Addition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/matrix/Matrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/matrix/Matrix.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/matrix/WrongSizeException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/matrix/WrongSizeException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/solution/Solution.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/solution/Solution.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/solution/SolutionNotFound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/solution/SolutionNotFound.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/substring/Substring.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/substring/Substring.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab04/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab04/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab04/.idea/libraries/org_mariuszgromada_math_MathParser_org_mXparser_4_3_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab04/.idea/libraries/org_mariuszgromada_math_MathParser_org_mXparser_4_3_3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab04/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab04/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab04/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab04/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab04/.idea/project-template.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab04/.idea/project-template.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab04/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab04/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab04/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab04/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab04/lab04.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab04/lab04.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab04/src/com/company/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab04/src/com/company/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab04/src/com/company/ListModelElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab04/src/com/company/ListModelElement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab04/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab04/src/com/company/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab05/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab05/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab05/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab05/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab05/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab05/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab05/.idea/project-template.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab05/.idea/project-template.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab05/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab05/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab05/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab05/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab05/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab05/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab05/lab03.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab05/lab03.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab05/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab05/src/com/company/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab05/src/com/company/Sorting/BubbleSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab05/src/com/company/Sorting/BubbleSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab05/src/com/company/Sorting/InsertionSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab05/src/com/company/Sorting/InsertionSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab05/src/com/company/Sorting/RecursiveBubbleSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab05/src/com/company/Sorting/RecursiveBubbleSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab05/src/com/company/Sorting/RecursiveInsertionSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab05/src/com/company/Sorting/RecursiveInsertionSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab05/src/com/company/Sorting/SelectionSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab05/src/com/company/Sorting/SelectionSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab05/src/com/company/matrix/Addition.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab05/src/com/company/matrix/Addition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab05/src/com/company/matrix/Matrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab05/src/com/company/matrix/Matrix.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab05/src/com/company/matrix/WrongSizeException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab05/src/com/company/matrix/WrongSizeException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab05/src/com/company/solution/Solution.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab05/src/com/company/solution/Solution.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab05/src/com/company/solution/SolutionNotFound.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab05/src/com/company/solution/SolutionNotFound.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab05/src/com/company/substring/Substring.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab05/src/com/company/substring/Substring.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab05/src/com/company/testing/MatrixTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab05/src/com/company/testing/MatrixTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab05/src/com/company/testing/SolutionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab05/src/com/company/testing/SolutionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab05/src/com/company/testing/SortingTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab05/src/com/company/testing/SortingTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab05/src/com/company/testing/SubstringTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab05/src/com/company/testing/SubstringTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab06/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab06/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab06/.idea/description.html" beforeDir="false" afterPath="$PROJECT_DIR$/../lab06/.idea/description.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab06/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab06/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab06/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab06/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab06/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab06/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab06/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab06/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab06/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab06/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab06/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab06/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab06/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab06/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab06/lab06.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab06/lab06.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab06/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab06/src/sample/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab06/src/sample/controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab06/src/sample/controllers/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab06/src/sample/controllers/SecondController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab06/src/sample/controllers/SecondController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab06/src/sample/layout/main_stage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab06/src/sample/layout/main_stage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab06/src/sample/layout/second_stage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab06/src/sample/layout/second_stage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab06/src/sample/tools/AddTaskCallback.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab06/src/sample/tools/AddTaskCallback.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab06/src/sample/tools/ListElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab06/src/sample/tools/ListElement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab06/src/sample/tools/PriorityEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab06/src/sample/tools/PriorityEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab07/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab07/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab07/.idea/description.html" beforeDir="false" afterPath="$PROJECT_DIR$/../lab07/.idea/description.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab07/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab07/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab07/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab07/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab07/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab07/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab07/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab07/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab07/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab07/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab07/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab07/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab07/lab07.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab07/lab07.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab07/out/production/lab07/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab07/out/production/lab07/sample/sample.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab07/src/sample/CalcTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab07/src/sample/CalcTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab07/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab07/src/sample/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab07/src/sample/Equation.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab07/src/sample/Equation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab07/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab07/src/sample/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab07/src/sample/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab07/src/sample/Point.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab07/src/sample/PointLoss.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab07/src/sample/PointLoss.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab07/src/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab07/src/sample/sample.fxml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,8 +137,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1045">
-              <caret line="63" column="42" lean-forward="true" selection-start-line="63" selection-start-column="42" selection-end-line="63" selection-end-column="42" />
+            <state relative-caret-position="295">
+              <caret line="63" column="42" selection-start-line="63" selection-start-column="42" selection-end-line="63" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -106,7 +210,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -164,6 +267,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -173,7 +277,7 @@
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554321346295" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../lab05" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../lab06" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -251,12 +355,12 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.Main" />
       <item itemvalue="JUnit.com.company in lab03" />
       <item itemvalue="JUnit.All in lab03" />
       <item itemvalue="JUnit.MatrixTest (1)" />
       <item itemvalue="JUnit.SortingTest" />
       <item itemvalue="JUnit.SubstringTest" />
-      <item itemvalue="Application.Main" />
     </list>
     <recent_temporary>
       <list>
@@ -314,9 +418,9 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19261745" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1945629" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -325,7 +429,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3243626" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32394367" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -372,13 +476,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://D:/Java/lib/src.zip!/java.base/java/util/Comparator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1298">
-          <caret line="149" column="8" selection-start-line="149" selection-start-column="8" selection-end-line="149" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://D:/Java/lib/src.zip!/java.base/java/util/Comparator.java" />
     <entry file="file://$PROJECT_DIR$/src/com/company/Sorting/InsertionSort.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -393,13 +491,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-api/5.5.0-M1/junit-jupiter-api-5.5.0-M1.jar!/org/junit/jupiter/api/function/Executable.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="8" column="29" lean-forward="true" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-api/5.5.0-M1/junit-jupiter-api-5.5.0-M1.jar!/org/junit/jupiter/api/function/Executable.class" />
     <entry file="file://$PROJECT_DIR$/src/com/company/matrix/Addition.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -458,8 +550,8 @@
     <entry file="file://$PROJECT_DIR$/src/com/company/testing/MatrixTest.java" />
     <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1045">
-          <caret line="63" column="42" lean-forward="true" selection-start-line="63" selection-start-column="42" selection-end-line="63" selection-end-column="42" />
+        <state relative-caret-position="295">
+          <caret line="63" column="42" selection-start-line="63" selection-start-column="42" selection-end-line="63" selection-end-column="42" />
         </state>
       </provider>
     </entry>

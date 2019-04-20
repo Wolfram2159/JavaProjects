@@ -1,6 +1,10 @@
 package sample.controllers;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.List;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +18,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import sample.tools.ListElement;
@@ -241,5 +246,42 @@ public class MainController {
         done_list.getItems().remove(index_done);
         listElement.setIndex(in_progress_list.getItems().size());
         in_progress_list.getItems().add(in_progress_list.getItems().size(),listElement);
+    }
+
+    public void onSave(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select file to save list");
+        File file = fileChooser.showOpenDialog(to_do_list.getScene().getWindow());
+
+    }
+
+    public void onOpen(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("xd");
+        File file = fileChooser.showSaveDialog(to_do_list.getScene().getWindow());
+        System.out.println(file.getAbsolutePath());
+        try {
+            System.out.println("chujaszek");
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
+            List<ListElement> listElementList = to_do_list.getItems();
+            for (ListElement listElement : listElementList) {
+                outputStream.writeObject(listElement);
+                System.out.println(listElement.getIndex());
+            }
+            outputStream.close();
+            fileOutputStream.close();
+            System.out.println("saved");
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public void onImport(ActionEvent actionEvent) {
+
+    }
+
+    public void onExport(ActionEvent actionEvent) {
+
     }
 }

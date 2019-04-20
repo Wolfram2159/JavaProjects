@@ -1,8 +1,9 @@
 package sample.tools;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class ListElement {
+public class ListElement implements Serializable {
     private String description;
     private PriorityEnum priority;
     private LocalDate date;
