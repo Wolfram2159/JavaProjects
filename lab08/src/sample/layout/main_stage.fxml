@@ -34,6 +34,14 @@
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#onAbout" text="About" />
                </items></Menu>
+            <Menu mnemonicParsing="false" text="Serialize">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#onSave" text="Save" />
+                  <MenuItem mnemonicParsing="false" onAction="#onOpen" text="Open" />
+                  <MenuItem mnemonicParsing="false" onAction="#onExport" text="Export" />
+                  <MenuItem mnemonicParsing="false" onAction="#onImport" text="Import" />
+               </items>
+            </Menu>
             </menus>
         </MenuBar>
         <FlowPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="220.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
