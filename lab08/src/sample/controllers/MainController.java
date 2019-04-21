@@ -1,12 +1,18 @@
 package sample.controllers;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
@@ -91,7 +97,7 @@ public class MainController {
                         if ((item.getIndex() + 1) != to_do_list.getItems().size()) {
                             for (int i = item.getIndex() + 1; i < to_do_list.getItems().size(); i++) {
                                 ListElement listElement = (ListElement) to_do_list.getItems().get(i);
-                                listElement.setIndex(i-1);
+                                listElement.setIndex(i - 1);
                             }
                         }
                         to_do_list.getItems().remove(item.getIndex());
@@ -149,7 +155,7 @@ public class MainController {
                         if ((item.getIndex() + 1) != in_progress_list.getItems().size()) {
                             for (int i = item.getIndex() + 1; i < in_progress_list.getItems().size(); i++) {
                                 ListElement listElement = (ListElement) in_progress_list.getItems().get(i);
-                                listElement.setIndex(i-1);
+                                listElement.setIndex(i - 1);
                             }
                         }
                         in_progress_list.getItems().remove(item.getIndex());
@@ -207,7 +213,7 @@ public class MainController {
                         if ((item.getIndex() + 1) != done_list.getItems().size()) {
                             for (int i = item.getIndex() + 1; i < done_list.getItems().size(); i++) {
                                 ListElement listElement = (ListElement) done_list.getItems().get(i);
-                                listElement.setIndex(i-1);
+                                listElement.setIndex(i - 1);
                             }
                         }
                         done_list.getItems().remove(item.getIndex());
@@ -255,7 +261,7 @@ public class MainController {
         if ((listElement.getIndex() + 1) != to_do_list.getItems().size()) {
             for (int i = listElement.getIndex() + 1; i < to_do_list.getItems().size(); i++) {
                 ListElement element = (ListElement) to_do_list.getItems().get(i);
-                element.setIndex(i-1);
+                element.setIndex(i - 1);
             }
         }
         to_do_list.getItems().remove(index_to_do);
@@ -269,7 +275,7 @@ public class MainController {
         if ((listElement.getIndex() + 1) != in_progress_list.getItems().size()) {
             for (int i = listElement.getIndex() + 1; i < in_progress_list.getItems().size(); i++) {
                 ListElement element = (ListElement) in_progress_list.getItems().get(i);
-                element.setIndex(i-1);
+                element.setIndex(i - 1);
             }
         }
         in_progress_list.getItems().remove(index_in_progress);
@@ -283,7 +289,7 @@ public class MainController {
         if ((listElement.getIndex() + 1) != in_progress_list.getItems().size()) {
             for (int i = listElement.getIndex() + 1; i < in_progress_list.getItems().size(); i++) {
                 ListElement element = (ListElement) in_progress_list.getItems().get(i);
-                element.setIndex(i-1);
+                element.setIndex(i - 1);
             }
         }
         in_progress_list.getItems().remove(index_in_progress);
@@ -297,7 +303,7 @@ public class MainController {
         if ((listElement.getIndex() + 1) != done_list.getItems().size()) {
             for (int i = listElement.getIndex() + 1; i < done_list.getItems().size(); i++) {
                 ListElement element = (ListElement) done_list.getItems().get(i);
-                element.setIndex(i-1);
+                element.setIndex(i - 1);
             }
         }
         done_list.getItems().remove(index_done);
@@ -351,15 +357,15 @@ public class MainController {
             in_progress_list.getItems().clear();
             done_list.getItems().clear();
             while ((listElement = (ListElement) inputStream.readObject()) != null) {
-                switch (listElement.getBelongs()){
+                switch (listElement.getBelongs()) {
                     case toDo:
-                        to_do_list.getItems().add(listElement.getIndex(),listElement);
+                        to_do_list.getItems().add(listElement.getIndex(), listElement);
                         break;
                     case inProgress:
-                        in_progress_list.getItems().add(listElement.getIndex(),listElement);
+                        in_progress_list.getItems().add(listElement.getIndex(), listElement);
                         break;
                     case done:
-                        done_list.getItems().add(listElement.getIndex(),listElement);
+                        done_list.getItems().add(listElement.getIndex(), listElement);
                         break;
                 }
             }
@@ -378,10 +384,87 @@ public class MainController {
     }
 
     public void onImport(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose file to export");
+        File file = fileChooser.showSaveDialog(to_do_list.getScene().getWindow());
 
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8"));
+            for (ListElement element : (List<ListElement>) to_do_list.getItems()) {
+                bufferedWriter.write(createCSVString(element));
+                bufferedWriter.newLine();
+            }
+            for (ListElement element : (List<ListElement>) in_progress_list.getItems()) {
+                bufferedWriter.write(createCSVString(element));
+                bufferedWriter.newLine();
+            }
+            for (ListElement element : (List<ListElement>) done_list.getItems()) {
+                bufferedWriter.write(createCSVString(element));
+                bufferedWriter.newLine();
+            }
+            bufferedWriter.flush();
+            bufferedWriter.close();
+        } catch (UnsupportedEncodingException e) {
+        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
+        }
+    }
+
+    public String createCSVString(ListElement element) {
+        String CSV_SEPARATOR = ";";
+        StringBuffer oneLine = new StringBuffer();
+        oneLine.append(element.getDescription());
+        oneLine.append(CSV_SEPARATOR);
+        oneLine.append(element.getPriority());
+        oneLine.append(CSV_SEPARATOR);
+        oneLine.append(element.getDate());
+        oneLine.append(CSV_SEPARATOR);
+        oneLine.append(element.getText());
+        oneLine.append(CSV_SEPARATOR);
+        oneLine.append(element.getIndex());
+        oneLine.append(CSV_SEPARATOR);
+        oneLine.append(element.getBelongs());
+        return oneLine.toString();
     }
 
     public void onExport(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose file to import");
+        File file = fileChooser.showOpenDialog(to_do_list.getScene().getWindow());
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
+            String nextLine = null;
+            while ((nextLine = bufferedReader.readLine()) != null) {
+                //System.out.println(nextLine);
+                createTask(nextLine);
+            }
+            bufferedReader.close();
+        } catch (UnsupportedEncodingException e) {
+        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
+        }
+    }
 
+    public void createTask(String nextLine) {
+        String[] oneLine = nextLine.split(";");
+        String description = oneLine[0];
+        PriorityEnum priority = PriorityEnum.valueOf(oneLine[1]);
+        LocalDate date = LocalDate.parse(oneLine[2]);
+        String text = oneLine[3];
+        int index = Integer.parseInt(oneLine[4]);
+        BelongsEnum belongs = BelongsEnum.valueOf(oneLine[5]);
+        ListElement listElement = new ListElement(description, priority, date, text, index);
+        listElement.setBelongs(belongs);
+        switch (belongs) {
+            case toDo:
+                to_do_list.getItems().add(listElement);
+                break;
+            case inProgress:
+                in_progress_list.getItems().add(listElement);
+                break;
+            case done:
+                done_list.getItems().add(listElement);
+                break;
+        }
     }
 }
