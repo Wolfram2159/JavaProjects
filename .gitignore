@@ -13,6 +13,15 @@
 .idea/**/dictionaries
 .idea/**/shelf
 
+# Intellij
+.idea/
+*.iml
+*.iws
+
+# Maven
+log/
+target/
+
 # User-specific stuff:
 **/.idea/workspace.xml
 **/.idea/tasks.xml
