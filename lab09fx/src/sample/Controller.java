@@ -54,8 +54,8 @@ public class Controller {
             });*/
             Thread thread = new Thread(task);
             thread.start();
-            //threadList.add(thread);
-            if (firstList.indexOf(movie)==firstList.size()-1){
+            threadList.add(thread);
+            /*if (firstList.indexOf(movie)==firstList.size()-1){
                 try {
                     thread.join();
                     //System.out.println("poczekalem");
@@ -63,6 +63,13 @@ public class Controller {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+            }*/
+        }
+        for (Thread thread : threadList) {
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                System.out.println("interrupted");
             }
         }
         /*g.addVertex(secondActor);
