@@ -3,46 +3,64 @@ package com.company.network;
 import com.company.entities.Actor;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
 public class NetworkFactory {
-    public static String getActor(String actorId) throws IOException {
-        OkHttpClient client = new OkHttpClient();
+    private OkHttpClient client;
+
+    public NetworkFactory() {
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        builder.connectTimeout(30, TimeUnit.SECONDS);
+        builder.readTimeout(30, TimeUnit.SECONDS);
+        builder.writeTimeout(30, TimeUnit.SECONDS);
+        client = builder.build();
+    }
+
+    public String getActor(String actorId) throws IOException {
+        //OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url("https://java.kisim.eu.org/actors/"+actorId)
                 .build();
-
         Response response = client.newCall(request).execute();
-        return response.body().string();
+        String json = response.body().string();
+        response.body().close();
+        return json;
     }
-    public static String getMovie(String movieId) throws IOException {
-        OkHttpClient client = new OkHttpClient();
+    public String getMovie(String movieId) throws IOException {
+        //OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url("https://java.kisim.eu.org/movies/"+movieId)
                 .build();
 
         Response response = client.newCall(request).execute();
-        return response.body().string();
+        String json = response.body().string();
+        response.body().close();
+        return json;
     }
-    public static String getActorMovies(String actorId) throws IOException{
-        OkHttpClient client = new OkHttpClient();
+    public String getActorMovies(String actorId) throws IOException{
+        //OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url("https://java.kisim.eu.org/actors/"+actorId+"/movies")
                 .build();
 
         Response response = client.newCall(request).execute();
-        return response.body().string();
+        String json = response.body().string();
+        response.body().close();
+        return json;
     }
-    public static String searchActors(String pattern) throws IOException{
-        OkHttpClient client = new OkHttpClient();
+    public String searchActors(String pattern) throws IOException{
+        //OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url("https://java.kisim.eu.org/actors/search/"+pattern)
                 .build();
 
         Response response = client.newCall(request).execute();
-        return response.body().string();
+        String json = response.body().string();
+        response.body().close();
+        return json;
     }
 }
