@@ -36,7 +36,7 @@ public class CreateSecondTask extends Task<Boolean> {
             g.addEdge(vertexActor, actor, (Movie) movie.clone());
             if(actor.getId().equals(secondActor.getId())){
                 Platform.runLater(() -> {
-                    GraphFinder finder = new GraphFinder(g, firstActor,secondActor);
+                    GraphFinder finder = new GraphFinder(g, firstActor, secondActor);
                     finder.findPath();
                 });
                 System.out.println("znaleziony 2");

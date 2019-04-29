@@ -3,24 +3,22 @@ package sample;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.jgrapht.Graph;
-import org.jgrapht.GraphPath;
-import org.jgrapht.alg.shortestpath.BellmanFordShortestPath;
 import org.jgrapht.graph.SimpleGraph;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
 import javafx.event.ActionEvent;
 import sample.entities.Actor;
 import sample.entities.Movie;
-import sample.graph.GraphFinder;
 import sample.network.NetworkFactory;
 import sample.threads.CreateGraphTask;
 
 public class Controller {
+
+    private volatile int i;
 
     public void onClick(ActionEvent actionEvent) {
         System.out.println("xd");
@@ -43,18 +41,24 @@ public class Controller {
         }
         List<Thread> threadList = new ArrayList<>();
         g.addVertex(firstActor);
+        i = firstList.size();
         for (Movie movie : firstList) {
             //System.out.println(movie.getId());
-            CreateGraphTask task = new CreateGraphTask(movie, firstActor, secondActor, g);
-            /*task.setOnSucceeded(e -> {
+
+            CreateGraphTask task = new CreateGraphTask(movie, firstActor, secondActor, g,i);
+            i--;
+            task.setOnSucceeded(e -> {
                 //System.out.println("progres");
+                //i--;
+                System.out.println(i);
                 if(task.getValue()){
                     System.out.println(movie.getId());
                 }
-            });*/
+            });
             Thread thread = new Thread(task);
             thread.start();
-            threadList.add(thread);
+            //thread.start();
+            //threadList.add(thread);
             /*if (firstList.indexOf(movie)==firstList.size()-1){
                 try {
                     thread.join();
@@ -65,15 +69,15 @@ public class Controller {
                 }
             }*/
         }
-        for (Thread thread : threadList) {
+        /*for (Thread thread : threadList) {
             try {
                 thread.join();
             } catch (InterruptedException e) {
-                System.out.println("interrupted");
+                e.printStackTrace();
             }
-        }
-        /*g.addVertex(secondActor);
-        GraphFinder finder = new GraphFinder(g, firstActor, secondActor);
+        }*/
+        //g.addVertex(secondActor);
+        /*GraphFinder finder = new GraphFinder(g, firstActor, secondActor);
         finder.findPath();*/
     }
 }

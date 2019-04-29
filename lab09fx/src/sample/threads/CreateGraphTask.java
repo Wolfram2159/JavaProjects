@@ -17,24 +17,33 @@ import sample.graph.GraphFinder;
 import sample.network.NetworkFactory;
 
 public class CreateGraphTask extends Task<Boolean> {
+
     private Movie movie;
     private Actor firstActor;
     private Actor secondActor;
     private Graph<Actor, Movie> g;
     private NetworkFactory network;
     private ObjectMapper mapper;
-    public CreateGraphTask(Movie movie, Actor firstActor, Actor secondActor, Graph<Actor, Movie> g) {
+    private Integer i;
+    public CreateGraphTask(Movie movie, Actor firstActor, Actor secondActor, Graph<Actor, Movie> g, Integer i) {
         this.movie = movie;
         this.firstActor = firstActor;
         this.secondActor = secondActor;
         this.g = g;
+        this.i = i;
         network = new NetworkFactory();
         mapper = new ObjectMapper();
     }
 
     @Override
+    protected void succeeded() {
+        super.succeeded();
+        System.out.println("i=="+i);
+    }
+
+    @Override
     protected Boolean call() throws Exception {
-        System.out.println("First task");
+        //System.out.println("First task");
         //System.out.println("jestem w tasku");
         movie = network.completeMovie(movie);
         for (Actor actor : movie.getActors()) {
@@ -49,12 +58,12 @@ public class CreateGraphTask extends Task<Boolean> {
                 System.out.println("znaleziony");
                 return true;
             }
-            String json = network.getActorMovies(actor.getId());
+            /*String json = network.getActorMovies(actor.getId());
             List<Movie> movieList = Arrays.asList(mapper.readValue(json, Movie[].class));
             for (Movie movie1 : movieList) {
                 CreateSecondTask task = new CreateSecondTask(movie1, firstActor, secondActor, actor, g);
                 new Thread(task).start();
-            }
+            }*/
         }
         return false;
     }
