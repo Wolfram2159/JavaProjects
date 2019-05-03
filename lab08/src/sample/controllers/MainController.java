@@ -331,7 +331,9 @@ public class MainController {
 
     public void onSave(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Choose file to save");
+        fileChooser.setTitle("Choose folder to save");
+        FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Save a file", ".mySave");
+        fileChooser.getExtensionFilters().add(filter);
         File file = fileChooser.showSaveDialog(to_do_list.getScene().getWindow());
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(file);
@@ -361,6 +363,7 @@ public class MainController {
     public void onOpen(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose file to open");
+        FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("File to open","*.mySave");
         File file = fileChooser.showOpenDialog(to_do_list.getScene().getWindow());
         ObjectInputStream inputStream = null;
         FileInputStream fileInputStream = null;
@@ -401,6 +404,8 @@ public class MainController {
     public void onExport(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose file to export");
+        FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Saving CSV File",".saveCSV");
+        fileChooser.getExtensionFilters().add(filter);
         File file = fileChooser.showSaveDialog(to_do_list.getScene().getWindow());
 
         try {
@@ -428,6 +433,8 @@ public class MainController {
     public void onImport(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose file to import");
+        FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Opening CSV File", "*.saveCSV");
+        fileChooser.getExtensionFilters().add(filter);
         File file = fileChooser.showOpenDialog(to_do_list.getScene().getWindow());
         try {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
