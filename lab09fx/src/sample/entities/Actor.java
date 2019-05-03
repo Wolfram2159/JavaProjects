@@ -1,18 +1,29 @@
 package sample.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import java.util.List;
 import java.util.Objects;
 
 @JsonDeserialize(as = Actor.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Actor{
+public class Actor {
     @JsonProperty("id")
     private String id;
     @JsonProperty("name")
     private String name;
+    @JsonIgnore
+    private List<Movie> movies;
+
+    public Actor() {}
+
+    public Actor(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -31,16 +42,12 @@ public class Actor{
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public List<Movie> getMovies() {
+        return movies;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setMovies(List<Movie> movies) {
+        this.movies = movies;
     }
 
     @Override

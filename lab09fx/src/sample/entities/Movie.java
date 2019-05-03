@@ -6,6 +6,10 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import org.jgrapht.graph.DefaultEdge;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+
 @JsonDeserialize(as = Movie.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Movie extends DefaultEdge {
@@ -16,28 +20,20 @@ public class Movie extends DefaultEdge {
     @JsonProperty("actors")
     private Actor[] actors;
 
+    public Movie() {}
+
+    public Movie(String id, String title, Actor[] actors) {
+        this.id = id;
+        this.title = title;
+        this.actors = actors;
+    }
+
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public Actor[] getActors() {
-        return actors;
-    }
-
-    public void setActors(Actor[] actors) {
-        this.actors = actors;
+    public List<Actor> getActors() {
+        return Arrays.asList(actors);
     }
 
     @Override
