@@ -1,11 +1,21 @@
-package sample;
+package sample.controllers;
 
+import java.io.IOException;
+import java.util.List;
+
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import sample.callbacks.FindConnectionCallback;
 import sample.entities.Actor;
+import sample.entities.Movie;
 import sample.moviesRepository.ApiMoviesRepository;
 import sample.moviesRepository.MoviesRepository;
 import sample.threads.CalculateThread;
@@ -29,9 +39,23 @@ public class Controller {
         Actor stop = repository.searchActor(secondActor.getText());
         firstActor.setText(start.getName());
         secondActor.setText(stop.getName());
+
         CalculateThread thread = new CalculateThread(start, stop, (text) -> {
             textArea.setText(textArea.getText() + text + "\n");
-        }, repository);
+        }, ((vertices, edges) -> {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../layouts/image.fxml"));
+                Parent root = fxmlLoader.load();
+                Stage stage = new Stage();
+                stage.setTitle("Graph Visualization");
+                stage.setScene(new Scene(root, 600, 600));
+                ImageController secondController = fxmlLoader.getController();
+                secondController.transfer(vertices, edges);
+                stage.show();
+            } catch (IOException ex) {
+                System.out.println("IOException");
+            }
+        }), repository);
         progressBar.progressProperty().bind(thread.progressProperty());
         new Thread(thread).start();
         /*String startActor = "nm9465752";
@@ -47,6 +71,21 @@ public class Controller {
         secondActor.setText(stop.getName());
         CalculateThread thread = new CalculateThread(start, stop, (text) -> {
             textArea.setText(textArea.getText() + text + "\n");
+        }, (vertices, edges) -> {
+            Platform.runLater(() -> {
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../layouts/image.fxml"));
+                    Parent root = fxmlLoader.load();
+                    Stage stage = new Stage();
+                    stage.setTitle("Graph Visualization");
+                    stage.setScene(new Scene(root, 600, 600));
+                    ImageController secondController = fxmlLoader.getController();
+                    secondController.transfer(vertices, edges);
+                    stage.show();
+                } catch (IOException ex) {
+                    System.out.println("IOException");
+                }
+            });
         }, repository);
         progressBar.progressProperty().bind(thread.progressProperty());
         new Thread(thread).start();

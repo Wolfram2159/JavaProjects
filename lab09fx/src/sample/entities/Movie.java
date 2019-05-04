@@ -20,7 +20,8 @@ public class Movie extends DefaultEdge {
     @JsonProperty("actors")
     private Actor[] actors;
 
-    public Movie() {}
+    public Movie() {
+    }
 
     public Movie(String id, String title, Actor[] actors) {
         this.id = id;
@@ -30,6 +31,10 @@ public class Movie extends DefaultEdge {
 
     public String getId() {
         return id;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     public List<Actor> getActors() {

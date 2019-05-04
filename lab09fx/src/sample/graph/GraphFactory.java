@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import sample.callbacks.FindConnectionCallback;
 import sample.callbacks.ProgressBarCallback;
 import sample.callbacks.TextAreaCallback;
 import sample.entities.Actor;
@@ -37,6 +38,7 @@ public class GraphFactory {
     private List<Movie> fourthMoviesFromA;
     private TextAreaCallback textAreaCallback;
     private ProgressBarCallback progressBarCallback;
+    private FindConnectionCallback findConnectionCallback;
 
     public GraphFactory(Actor firstActor, Actor secondActor, MoviesRepository repository) {
         g = new SimpleGraph<>(Movie.class);
@@ -63,6 +65,10 @@ public class GraphFactory {
 
     public void setProgressBarCallback(ProgressBarCallback progressBarCallback) {
         this.progressBarCallback = progressBarCallback;
+    }
+
+    public void setFindConnectionCallback(FindConnectionCallback findConnectionCallback) {
+        this.findConnectionCallback = findConnectionCallback;
     }
 
     public void makeGraph() {
@@ -187,7 +193,7 @@ public class GraphFactory {
                 }
             }
         }
-        progressBarCallback.setProgress(0d,1d);
+        progressBarCallback.setProgress(0d, 1d);
         return false;
     }
 
@@ -195,12 +201,13 @@ public class GraphFactory {
         BellmanFordShortestPath<Actor, Movie> bfsp = new BellmanFordShortestPath<>(g);
         GraphPath<Actor, Movie> shortestPath = bfsp.getPath(a, b);
         List<Movie> edges = shortestPath.getEdgeList();
-        List<Actor> actors = shortestPath.getVertexList();
-        for (int i = 0; i < actors.size(); ++i) {
-            if (i == actors.size() - 1)
-                System.out.print(actors.get(i));
+        List<Actor> vertices = shortestPath.getVertexList();
+        for (int i = 0; i < vertices.size(); ++i) {
+            if (i == vertices.size() - 1)
+                System.out.print(vertices.get(i));
             else
-                System.out.print(actors.get(i) + " -> " + edges.get(i).toString() + " -> ");
+                System.out.print(vertices.get(i) + " -> " + edges.get(i).toString() + " -> ");
         }
+        findConnectionCallback.createGraphRepresentation(vertices, edges);
     }
 }
