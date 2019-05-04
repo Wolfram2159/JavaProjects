@@ -76,4 +76,21 @@ public class ApiMoviesRepository implements MoviesRepository {
             return null;
         }
     }
+    @Override
+    public Actor searchActor(String name) {
+        try {
+            Request request = new Request.Builder()
+                    .url("https://java.kisim.eu.org/actors/search/" + name)
+                    .build();
+
+            Response response = client.newCall(request).execute();
+            String json = response.body().string();
+            response.body().close();
+            return mapper.readValue(json, Actor[].class)[0];
+
+        }catch (IOException ex){
+            System.out.println("searchActor IOException");
+            return null;
+        }
+    }
 }

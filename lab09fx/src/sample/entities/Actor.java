@@ -18,7 +18,8 @@ public class Actor {
     @JsonIgnore
     private List<Movie> movies;
 
-    public Actor() {}
+    public Actor() {
+    }
 
     public Actor(String id, String name) {
         this.id = id;
@@ -40,6 +41,10 @@ public class Actor {
 
     public String getId() {
         return id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public List<Movie> getMovies() {

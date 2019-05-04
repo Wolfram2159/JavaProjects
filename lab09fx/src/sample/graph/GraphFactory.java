@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import sample.callbacks.ProgressBarCallback;
+import sample.callbacks.TextAreaCallback;
 import sample.entities.Actor;
 import sample.entities.Movie;
 import sample.moviesRepository.MoviesRepository;
@@ -18,10 +20,6 @@ public class GraphFactory {
     private Actor firstActor;
     private Actor secondActor;
     private MoviesRepository repository;
-    private List<Actor> firstDegreeFromA;
-    private List<Actor> firstDegreeFromB;
-    private List<Movie> firstMoviesFromA;
-    private List<Movie> firstMoviesFromB;
 
     private List<Actor> secondDegreeFromA;
     private List<Actor> secondDegreeFromB;
@@ -37,13 +35,14 @@ public class GraphFactory {
     private List<Actor> fourthDegreeFromB;
     private List<Movie> fourthMoviesFromB;
     private List<Movie> fourthMoviesFromA;
+    private TextAreaCallback textAreaCallback;
+    private ProgressBarCallback progressBarCallback;
 
-
-    public GraphFactory(String firstActor, String secondActor, MoviesRepository repository) {
+    public GraphFactory(Actor firstActor, Actor secondActor, MoviesRepository repository) {
         g = new SimpleGraph<>(Movie.class);
         this.repository = repository;
-        this.firstActor = repository.getActor(firstActor);
-        this.secondActor = repository.getActor(secondActor);
+        this.firstActor = firstActor;
+        this.secondActor = secondActor;
         secondDegreeFromA = new ArrayList<>();
         secondDegreeFromB = new ArrayList<>();
         secondMoviesFromA = new ArrayList<>();
@@ -58,50 +57,88 @@ public class GraphFactory {
         fourthMoviesFromA = new ArrayList<>();
     }
 
+    public void setTextAreaCallback(TextAreaCallback textAreaCallback) {
+        this.textAreaCallback = textAreaCallback;
+    }
+
+    public void setProgressBarCallback(ProgressBarCallback progressBarCallback) {
+        this.progressBarCallback = progressBarCallback;
+    }
+
     public void makeGraph() {
         g.addVertex(firstActor);
         g.addVertex(secondActor);
 
-        firstDegreeFromA = Arrays.asList(firstActor);
-        firstDegreeFromB = Arrays.asList(secondActor);
+        List<Actor> firstDegreeFromA = Arrays.asList(firstActor);
+        List<Actor> firstDegreeFromB = Arrays.asList(secondActor);
 
-        firstMoviesFromA = checkMovies(firstActor);
-        firstMoviesFromB = checkMovies(secondActor);
+        List<Movie> firstMoviesFromA = checkMovies(firstActor);
+        List<Movie> firstMoviesFromB = checkMovies(secondActor);
 
-        if (createDegree(firstMoviesFromA, firstMoviesFromB, firstDegreeFromA, firstDegreeFromB,
-                secondMoviesFromA, secondMoviesFromB, secondDegreeFromA, secondDegreeFromB, 1)) {
-            if (createDegree(secondMoviesFromA, secondMoviesFromB, secondDegreeFromA, secondDegreeFromB,
-                    thirdMoviesFromA, thirdMoviesFromB, thirdDegreeFromA, thirdDegreeFromB, 4)) {
-                createDegree(thirdMoviesFromA, thirdMoviesFromB, thirdDegreeFromA, thirdDegreeFromB,
-                        fourthMoviesFromA, fourthMoviesFromB, fourthDegreeFromA, fourthDegreeFromB, 7);
+        textAreaCallback.addString("Checking first movies from A - first movies from B connections...");
+        System.out.println("Checking first movies from A - first movies from B...");
+        if (!findConnection(firstMoviesFromA, firstMoviesFromB, firstDegreeFromA, firstDegreeFromB)) {
+            if (createDegree(firstMoviesFromB, firstDegreeFromA, firstDegreeFromB,
+                    secondMoviesFromA, secondMoviesFromB, secondDegreeFromA, secondDegreeFromB,
+                    "second", "first")) {
+                if (createDegree(secondMoviesFromB, secondDegreeFromA, secondDegreeFromB,
+                        thirdMoviesFromA, thirdMoviesFromB, thirdDegreeFromA, thirdDegreeFromB,
+                        "third", "second")) {
+                    if (createDegree(thirdMoviesFromB, thirdDegreeFromA, thirdDegreeFromB,
+                            fourthMoviesFromA, fourthMoviesFromB, fourthDegreeFromA, fourthDegreeFromB,
+                            "fourth", "third")) {
+                        textAreaCallback.addString("Nie ma żadnego połączenia pomiędzy tymi aktorami");
+                        System.out.println("Nie ma żadnego połączenia pomiędzy tymi aktorami");
+                    }
+                }
             }
         }
     }
 
-    private Boolean createDegree(List<Movie> firstMoviesFromA, List<Movie> firstMoviesFromB,
+    private Boolean createDegree(List<Movie> firstMoviesFromB,
                                  List<Actor> firstDegreeFromA, List<Actor> firstDegreeFromB,
                                  List<Movie> secondMoviesFromA, List<Movie> secondMoviesFromB,
                                  List<Actor> secondDegreeFromA, List<Actor> secondDegreeFromB,
-                                 Integer degree) {
-        System.out.println("Checking " + degree + "...");
-        if (!findConnection(firstMoviesFromA, firstMoviesFromB, firstDegreeFromA, firstDegreeFromB)) {
-            for (Actor actor : firstDegreeFromA) {
-                secondDegreeFromA.addAll(addingLoop(actor));
-            }
+                                 String secondDegree, String firstDegree) {
+        Double up = 0d;
+        Double down;
+        textAreaCallback.addString("    Creating " + secondDegree + " degree from A...");
+        System.out.println("    Creating " + secondDegree + " degree from A...");
+        down = (double) firstDegreeFromA.size();
+        for (Actor actor : firstDegreeFromA) {
+            secondDegreeFromA.addAll(addingLoop(actor));
+            progressBarCallback.setProgress(++up, down);
+        }
+        textAreaCallback.addString("    Creating " + secondDegree + " movies from A...");
+        System.out.println("    Creating " + secondDegree + " movies from A...");
+        up = 0d;
+        down = (double) secondDegreeFromA.size();
+        for (Actor actor : secondDegreeFromA) {
+            secondMoviesFromA.addAll(checkMovies(actor));
+            progressBarCallback.setProgress(++up, down);
+        }
+        textAreaCallback.addString("Checking " + secondDegree + " movies from A - " + firstDegree + " movies from B connections...");
+        System.out.println("Checking " + secondDegree + " movies from A - " + firstDegree + " movies from B connections...");
+        if (!findConnection(secondMoviesFromA, firstMoviesFromB, secondDegreeFromA, firstDegreeFromB)) {
+            textAreaCallback.addString("    Creating " + secondDegree + " degree from B...");
+            System.out.println("    Creating " + secondDegree + " degree from B...");
+            up = 0d;
+            down = (double) firstDegreeFromB.size();
             for (Actor actor : firstDegreeFromB) {
                 secondDegreeFromB.addAll(addingLoop(actor));
+                progressBarCallback.setProgress(++up, down);
             }
-            for (Actor actor : secondDegreeFromA) {
-                secondMoviesFromA.addAll(checkMovies(actor));
+            textAreaCallback.addString("    Creating " + secondDegree + " movies from B...");
+            System.out.println("    Creating " + secondDegree + " movies from B...");
+            up = 0d;
+            down = (double) secondDegreeFromB.size();
+            for (Actor actor : secondDegreeFromB) {
+                secondMoviesFromB.addAll(checkMovies(actor));
+                progressBarCallback.setProgress(++up, down);
             }
-            System.out.println("Checking " + (degree + 1) + "...");
-            if (!findConnection(secondMoviesFromA, firstMoviesFromB, secondDegreeFromA, firstDegreeFromB)) {
-                for (Actor actor : secondDegreeFromB) {
-                    secondMoviesFromB.addAll(checkMovies(actor));
-                }
-                System.out.println("Checking " + (degree + 2) + "...");
-                return !findConnection(secondMoviesFromA, secondMoviesFromB, secondDegreeFromA, secondDegreeFromB);
-            }
+            textAreaCallback.addString("Checking " + secondDegree + " movies from A - " + secondDegree + " movies from B connections...");
+            System.out.println("Checking " + secondDegree + " movies from A - " + secondDegree + " movies from B connections...");
+            return !findConnection(secondMoviesFromA, secondMoviesFromB, secondDegreeFromA, secondDegreeFromB);
         }
         return false;
     }
@@ -150,6 +187,7 @@ public class GraphFactory {
                 }
             }
         }
+        progressBarCallback.setProgress(0d,1d);
         return false;
     }
 
