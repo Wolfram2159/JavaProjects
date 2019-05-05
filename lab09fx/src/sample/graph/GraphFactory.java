@@ -75,26 +75,29 @@ public class GraphFactory {
         g.addVertex(firstActor);
         g.addVertex(secondActor);
 
+        textAreaCallback.addString("Making connection between " + firstActor.getName() + " and " + secondActor.getName());
+
         List<Actor> firstDegreeFromA = Arrays.asList(firstActor);
         List<Actor> firstDegreeFromB = Arrays.asList(secondActor);
 
         List<Movie> firstMoviesFromA = checkMovies(firstActor);
         List<Movie> firstMoviesFromB = checkMovies(secondActor);
-
-        textAreaCallback.addString("Checking first movies from A - first movies from B connections...");
-        System.out.println("Checking first movies from A - first movies from B...");
-        if (!findConnection(firstMoviesFromA, firstMoviesFromB, firstDegreeFromA, firstDegreeFromB)) {
-            if (createDegree(firstMoviesFromB, firstDegreeFromA, firstDegreeFromB,
-                    secondMoviesFromA, secondMoviesFromB, secondDegreeFromA, secondDegreeFromB,
-                    "second", "first")) {
-                if (createDegree(secondMoviesFromB, secondDegreeFromA, secondDegreeFromB,
-                        thirdMoviesFromA, thirdMoviesFromB, thirdDegreeFromA, thirdDegreeFromB,
-                        "third", "second")) {
-                    if (createDegree(thirdMoviesFromB, thirdDegreeFromA, thirdDegreeFromB,
-                            fourthMoviesFromA, fourthMoviesFromB, fourthDegreeFromA, fourthDegreeFromB,
-                            "fourth", "third")) {
-                        textAreaCallback.addString("Nie ma żadnego połączenia pomiędzy tymi aktorami");
-                        System.out.println("Nie ma żadnego połączenia pomiędzy tymi aktorami");
+        if (firstMoviesFromA.size()==0 || firstMoviesFromB.size()==0){
+            textAreaCallback.addString("There is no connection between those actors. Choose other actors.");
+        }else {
+            textAreaCallback.addString("Checking first movies from A - first movies from B connections...");
+            if (!findConnection(firstMoviesFromA, firstMoviesFromB, firstDegreeFromA, firstDegreeFromB)) {
+                if (createDegree(firstMoviesFromB, firstDegreeFromA, firstDegreeFromB,
+                        secondMoviesFromA, secondMoviesFromB, secondDegreeFromA, secondDegreeFromB,
+                        "second", "first")) {
+                    if (createDegree(secondMoviesFromB, secondDegreeFromA, secondDegreeFromB,
+                            thirdMoviesFromA, thirdMoviesFromB, thirdDegreeFromA, thirdDegreeFromB,
+                            "third", "second")) {
+                        if (createDegree(thirdMoviesFromB, thirdDegreeFromA, thirdDegreeFromB,
+                                fourthMoviesFromA, fourthMoviesFromB, fourthDegreeFromA, fourthDegreeFromB,
+                                "fourth", "third")) {
+                            textAreaCallback.addString("Nie ma żadnego połączenia pomiędzy tymi aktorami");
+                        }
                     }
                 }
             }
@@ -109,14 +112,12 @@ public class GraphFactory {
         Double up = 0d;
         Double down;
         textAreaCallback.addString("    Creating " + secondDegree + " degree from A...");
-        System.out.println("    Creating " + secondDegree + " degree from A...");
         down = (double) firstDegreeFromA.size();
         for (Actor actor : firstDegreeFromA) {
             secondDegreeFromA.addAll(addingLoop(actor));
             progressBarCallback.setProgress(++up, down);
         }
         textAreaCallback.addString("    Creating " + secondDegree + " movies from A...");
-        System.out.println("    Creating " + secondDegree + " movies from A...");
         up = 0d;
         down = (double) secondDegreeFromA.size();
         for (Actor actor : secondDegreeFromA) {
@@ -124,10 +125,8 @@ public class GraphFactory {
             progressBarCallback.setProgress(++up, down);
         }
         textAreaCallback.addString("Checking " + secondDegree + " movies from A - " + firstDegree + " movies from B connections...");
-        System.out.println("Checking " + secondDegree + " movies from A - " + firstDegree + " movies from B connections...");
         if (!findConnection(secondMoviesFromA, firstMoviesFromB, secondDegreeFromA, firstDegreeFromB)) {
             textAreaCallback.addString("    Creating " + secondDegree + " degree from B...");
-            System.out.println("    Creating " + secondDegree + " degree from B...");
             up = 0d;
             down = (double) firstDegreeFromB.size();
             for (Actor actor : firstDegreeFromB) {
@@ -135,7 +134,6 @@ public class GraphFactory {
                 progressBarCallback.setProgress(++up, down);
             }
             textAreaCallback.addString("    Creating " + secondDegree + " movies from B...");
-            System.out.println("    Creating " + secondDegree + " movies from B...");
             up = 0d;
             down = (double) secondDegreeFromB.size();
             for (Actor actor : secondDegreeFromB) {
@@ -143,7 +141,6 @@ public class GraphFactory {
                 progressBarCallback.setProgress(++up, down);
             }
             textAreaCallback.addString("Checking " + secondDegree + " movies from A - " + secondDegree + " movies from B connections...");
-            System.out.println("Checking " + secondDegree + " movies from A - " + secondDegree + " movies from B connections...");
             return !findConnection(secondMoviesFromA, secondMoviesFromB, secondDegreeFromA, secondDegreeFromB);
         }
         return false;
@@ -202,12 +199,7 @@ public class GraphFactory {
         GraphPath<Actor, Movie> shortestPath = bfsp.getPath(a, b);
         List<Movie> edges = shortestPath.getEdgeList();
         List<Actor> vertices = shortestPath.getVertexList();
-        for (int i = 0; i < vertices.size(); ++i) {
-            if (i == vertices.size() - 1)
-                System.out.print(vertices.get(i));
-            else
-                System.out.print(vertices.get(i) + " -> " + edges.get(i).toString() + " -> ");
-        }
+        progressBarCallback.setProgress(0d, 1d);
         findConnectionCallback.createGraphRepresentation(vertices, edges);
     }
 }

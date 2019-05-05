@@ -88,10 +88,10 @@ public class MockMoviesRepository implements MoviesRepository {
     }
 
     @Override
-    public Actor searchActor(String name) {
+    public List<Actor> searchActor(String name) {
         for (Actor actor : actorList) {
             if (actor.getId().equals(name)){
-                return actor;
+                return Arrays.asList(actor);
             }
         }
         return null;

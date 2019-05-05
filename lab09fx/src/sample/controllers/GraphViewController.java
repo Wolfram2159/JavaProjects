@@ -2,20 +2,14 @@ package sample.controllers;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 import guru.nidi.graphviz.attribute.Color;
 import guru.nidi.graphviz.attribute.Label;
-import guru.nidi.graphviz.attribute.Style;
 import guru.nidi.graphviz.engine.Format;
 import guru.nidi.graphviz.engine.Graphviz;
 import guru.nidi.graphviz.model.Graph;
-import guru.nidi.graphviz.model.MutableGraph;
-import guru.nidi.graphviz.model.Node;
-import guru.nidi.graphviz.parse.Parser;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -26,14 +20,13 @@ import static guru.nidi.graphviz.model.Factory.graph;
 import static guru.nidi.graphviz.model.Factory.node;
 import static guru.nidi.graphviz.model.Factory.to;
 
-public class ImageController {
+public class GraphViewController {
 
     public ImageView imageView;
 
     public void transfer(List<Actor> vertices, List<Movie> edges) {
-        //todo:Representation
         Graph g = graph("graph");
-        switch (vertices.size()){
+        switch (vertices.size()) {
             case 2:
                 g = graph("graph").with(
                         node(vertices.get(0).getName()).with(Color.GREEN).link(to(node(vertices.get(1).getName())).with(Label.of(edges.get(0).getTitle()))),
@@ -101,7 +94,10 @@ public class ImageController {
         BufferedImage graf = Graphviz.fromGraph(g).height(600).width(600).render(Format.PNG).toImage();
         Image image = SwingFXUtils.toFXImage(graf, null);
         imageView.setImage(image);
-
+        try {
+            Graphviz.fromGraph(g).height(600).width(600).render(Format.PNG).toFile(new File("src/sample/graphExamples/ex" + vertices.size() + ".png"));
+        }catch (IOException ex){
+            System.out.println("graph to file ioexception");
+        }
     }
-
 }

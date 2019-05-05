@@ -9,5 +9,5 @@ public interface MoviesRepository {
     Actor getActor(String id);//Method returns actor, not null fields
     List<Movie> getActorMovies(String id);//Method returns movie array with movie null fields
     Movie getMovie(String id);//Method returns movie, not null fields
-    Actor searchActor(String name);
+    List<Actor> searchActor(String name);
 }

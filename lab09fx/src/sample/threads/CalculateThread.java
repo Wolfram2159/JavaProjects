@@ -2,7 +2,6 @@ package sample.threads;
 
 import javafx.concurrent.Task;
 import sample.callbacks.FindConnectionCallback;
-import sample.callbacks.ProgressBarCallback;
 import sample.callbacks.TextAreaCallback;
 import sample.entities.Actor;
 import sample.graph.GraphFactory;
@@ -10,25 +9,42 @@ import sample.moviesRepository.MoviesRepository;
 
 public class CalculateThread extends Task<Void> {
     private FindConnectionCallback findConnectionCallback;
-    private Actor start;
-    private Actor stop;
+    private String start;
+    private String stop;
     private TextAreaCallback textAreaCallback;
     private MoviesRepository repository;
-    public CalculateThread(Actor startActor, Actor stopActor, TextAreaCallback textAreaCallback, FindConnectionCallback findConnectionCallback, MoviesRepository repository) {
+    private Actor first;
+    private Actor second;
+
+    public CalculateThread(String startActor, String stopActor, TextAreaCallback textAreaCallback, FindConnectionCallback findConnectionCallback, MoviesRepository repository) {
         this.start = startActor;
         this.stop = stopActor;
         this.textAreaCallback = textAreaCallback;
         this.repository = repository;
         this.findConnectionCallback = findConnectionCallback;
+        first = null;
+        second = null;
+    }
+
+    public CalculateThread(Actor first, Actor second, TextAreaCallback textAreaCallback, FindConnectionCallback findConnectionCallback, MoviesRepository repository) {
+        this.first = first;
+        this.second = second;
+        this.textAreaCallback = textAreaCallback;
+        this.findConnectionCallback = findConnectionCallback;
+        this.repository = repository;
     }
 
     @Override
     protected Void call() throws Exception {
-        GraphFactory finder = new GraphFactory(start, stop, repository);
+        if (first == null && second == null) {
+            first = repository.getActor(start);
+            second = repository.getActor(stop);
+        }
+        GraphFactory finder = new GraphFactory(first, second, repository);
         finder.setTextAreaCallback(textAreaCallback);
         finder.setFindConnectionCallback(findConnectionCallback);
-        finder.setProgressBarCallback((x,y) -> {
-            updateProgress(x,y);
+        finder.setProgressBarCallback((x, y) -> {
+            updateProgress(x, y);
         });
 
         finder.makeGraph();

@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 <?import javafx.scene.image.ImageView?>
-<GridPane alignment="center" hgap="10" minHeight="600.0" minWidth="600.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.ImageController">
+<GridPane alignment="center" hgap="10" minHeight="600.0" minWidth="600.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.GraphViewController">
     <children>
         <ImageView fx:id="imageView" fitHeight="600.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" />
     </children>
