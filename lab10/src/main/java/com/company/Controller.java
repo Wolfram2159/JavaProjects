@@ -2,14 +2,14 @@ package com.company;
 
 import com.company.exceptions.ImageNotFoundException;
 import com.company.repository.Repository;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.awt.Color;
@@ -19,13 +19,9 @@ import java.awt.image.BufferedImage;
 import java.awt.image.BufferedImageOp;
 import java.awt.image.ConvolveOp;
 import java.awt.image.Kernel;
-import java.awt.image.Raster;
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.stream.IntStream;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
@@ -41,7 +37,7 @@ public class Controller {
     }
 
     // I) Post /image todo: working
-    @RequestMapping(value = "/image/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/image", method = RequestMethod.POST)
     public String addImage(HttpServletRequest requestEntity) throws IOException {
         InputStream is = requestEntity.getInputStream();
         BufferedImage bi = ImageIO.read(is);
@@ -63,43 +59,45 @@ public class Controller {
 
     //II) DELETE /image/{id} todo: working
     @RequestMapping("/image/{id}")
-    public String deleteImageById(@PathVariable Integer id) {
+    public ResponseEntity<String> deleteImageById(@PathVariable Integer id) {
         try {
             repository.deleteImageById(id);
-            return "Image deleted successfully";
+            return new ResponseEntity<>("Deleted succcessfuly", HttpStatus.OK);
         } catch (ImageNotFoundException e) {
             e.printStackTrace();
-            return "Image not found" + id;
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
     //III) GET /image/{id}/size todo:working
     @RequestMapping("/image/{id}/size")
-    public String getImageSize(@PathVariable Integer id) {
-
+    public ResponseEntity<String> getImageSize(@PathVariable Integer id) {
         BufferedImage bi = null;
         try {
             bi = repository.getImage(id);
         } catch (ImageNotFoundException e) {
             e.printStackTrace();
-            return "Image not found" + id;
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("width", bi.getWidth());
         jsonObject.addProperty("height", bi.getHeight());
-        return jsonObject.toString();
+        return new ResponseEntity<>(jsonObject.toString(), HttpStatus.OK);
 
     }
 
     // IV) GET /image/{id}/scale/{percent} todo: working
     @RequestMapping(value = "/image/{id}/scale/{percent}", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
-    public byte[] getScaleImage(@PathVariable Integer id, @PathVariable Double percent) throws IOException {
+    public ResponseEntity<byte[]> getScaleImage(@PathVariable Integer id, @PathVariable Double percent) throws IOException {
         BufferedImage before = null;
         try {
             before = repository.getImage(id);
         } catch (ImageNotFoundException e) {
             e.printStackTrace();
-            return null;
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        if (percent <= 0 && percent >=100){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         int w = (int) (before.getWidth() * (percent / 100));
         int h = (int) (before.getHeight() * (percent / 100));
@@ -110,18 +108,18 @@ public class Controller {
         after = atOp.filter(before, after);
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         ImageIO.write(after, "jpg", bos);
-        return bos.toByteArray();
+        return new ResponseEntity<>(bos.toByteArray(), HttpStatus.OK);
     }
 
     // V) GET /image/{id}/histogram todo:working
     @RequestMapping("/image/{id}/histogram")
-    public String getImageHistogram(@PathVariable Integer id) {
+    public ResponseEntity<String> getImageHistogram(@PathVariable Integer id) {
         BufferedImage image = null;
         try {
             image = repository.getImage(id);
         } catch (ImageNotFoundException e) {
             e.printStackTrace();
-            return "Image not found" + id;
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         int[] red = new int[256];
         int[] green = new int[256];
@@ -148,19 +146,19 @@ public class Controller {
         jsonRGB.add("R", jsonRed);
         jsonRGB.add("G", jsonGreen);
         jsonRGB.add("B", jsonBlue);
-        return jsonRGB.toString();
+        return new ResponseEntity<>(jsonRGB.toString(), HttpStatus.OK);
     }
 
     // VI) GET /image/{id}/crop/{start}/{stop}/{width}/{height} todo:working
     @RequestMapping(value = "/image/{id}/crop/{startX}/{startY}/{width}/{height}", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
-    public byte[] getImageFragment(@PathVariable Integer id, @PathVariable Integer startX, @PathVariable Integer startY,
+    public ResponseEntity<byte[]> getImageFragment(@PathVariable Integer id, @PathVariable Integer startX, @PathVariable Integer startY,
                                    @PathVariable Integer width, @PathVariable Integer height) throws IOException {
         BufferedImage bi = null;
         try {
             bi = repository.getImage(id);
         } catch (ImageNotFoundException e) {
             e.printStackTrace();
-            return null;
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         BufferedImage newImage = new BufferedImage(width, height, bi.getType());
         for (int i = 0; i < width; i++) {
@@ -170,19 +168,19 @@ public class Controller {
         }
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         ImageIO.write(newImage, "jpg", bos);
-        return bos.toByteArray();
+        return new ResponseEntity<>(bos.toByteArray(), HttpStatus.OK);
     }
 
     // VII) GET /image/{id}/greyscale todo:working
     @RequestMapping(value = "/image/{id}/greyscale", method = RequestMethod.GET, produces =
             MediaType.IMAGE_JPEG_VALUE)
-    public byte[] getImageGrey(@PathVariable Integer id) throws IOException {
+    public ResponseEntity<byte[]> getImageGrey(@PathVariable Integer id) throws IOException {
         BufferedImage bImage = null;
         try {
             bImage = repository.getImage(id);
         } catch (ImageNotFoundException e) {
             e.printStackTrace();
-            return null;
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         for (int i = 0; i < bImage.getHeight(); i++) {
             for (int j = 0; j < bImage.getWidth(); j++) {
@@ -199,18 +197,21 @@ public class Controller {
         }
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         ImageIO.write(bImage, "jpg", bos);
-        return bos.toByteArray();
+        return new ResponseEntity<>(bos.toByteArray(), HttpStatus.OK);
     }
 
     // VIII) GET /image/{id}/blur/{radius} todo:working
     @RequestMapping(value = "/image/{id}/blur/{radius}", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
-    public byte[] getImageBlur(@PathVariable Integer id, @PathVariable Integer radius) throws IOException {
+    public ResponseEntity<byte[]> getImageBlur(@PathVariable Integer id, @PathVariable Integer radius) throws IOException {
         BufferedImage image = null;
         try {
             image = repository.getImage(id);
         } catch (ImageNotFoundException e) {
             e.printStackTrace();
-            return null;
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        if (radius <= 0){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         int rad2 = radius * radius;
         float[] matrix = new float[rad2];
@@ -221,6 +222,6 @@ public class Controller {
         BufferedImage blurredImage = op.filter(image, newImage);
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         ImageIO.write(blurredImage, "jpg", bos);
-        return bos.toByteArray();
+        return new ResponseEntity<>(bos.toByteArray(), HttpStatus.OK);
     }
 }
