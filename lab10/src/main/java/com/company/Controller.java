@@ -96,7 +96,7 @@ public class Controller {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        if (percent <= 0 && percent >=100){
+        if (percent < 1 || percent > 100){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         int w = (int) (before.getWidth() * (percent / 100));
@@ -160,6 +160,9 @@ public class Controller {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+        if(bi.getWidth() < (startX+width) || bi.getHeight() < (startY+height)){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         BufferedImage newImage = new BufferedImage(width, height, bi.getType());
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
@@ -182,8 +185,9 @@ public class Controller {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        for (int i = 0; i < bImage.getHeight(); i++) {
-            for (int j = 0; j < bImage.getWidth(); j++) {
+        BufferedImage newImage = new BufferedImage(bImage.getWidth(),bImage.getHeight(),bImage.getType());
+        for (int i = 0; i < newImage.getHeight(); i++) {
+            for (int j = 0; j < newImage.getWidth(); j++) {
                 Color c = new Color(bImage.getRGB(j, i));
                 int red = (int) (c.getRed() * 0.299);
                 int green = (int) (c.getGreen() * 0.587);
@@ -192,11 +196,11 @@ public class Controller {
 
                         red + green + blue, red + green + blue);
 
-                bImage.setRGB(j, i, newColor.getRGB());
+                newImage.setRGB(j, i, newColor.getRGB());
             }
         }
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        ImageIO.write(bImage, "jpg", bos);
+        ImageIO.write(newImage, "jpg", bos);
         return new ResponseEntity<>(bos.toByteArray(), HttpStatus.OK);
     }
 
