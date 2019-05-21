@@ -1,4 +1,4 @@
-package com.company.entities;
+package com.company.database.entities;
 
 import com.google.gson.JsonObject;
 
@@ -43,7 +43,7 @@ public class User implements Serializable {
                 '}';
     }
 
-    public String toJson(){
+    public String toJson() {
         JsonObject json = new JsonObject();
         json.addProperty("user_id", user_id);
         json.addProperty("username", username);

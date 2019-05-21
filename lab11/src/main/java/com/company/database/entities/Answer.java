@@ -1,4 +1,4 @@
-package com.company.entities;
+package com.company.database.entities;
 
 import com.google.gson.JsonObject;
 
@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity

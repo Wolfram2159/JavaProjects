@@ -1,4 +1,4 @@
-package com.company.entities;
+package com.company.database.entities;
 
 
 import com.google.gson.JsonObject;

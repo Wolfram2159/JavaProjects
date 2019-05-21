@@ -1,8 +1,8 @@
 package com.company.database;
 
-import com.company.entities.Answer;
-import com.company.entities.Survey;
-import com.company.entities.User;
+import com.company.database.entities.Answer;
+import com.company.database.entities.Survey;
+import com.company.database.entities.User;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
